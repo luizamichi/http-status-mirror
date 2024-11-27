@@ -1,0 +1,360 @@
+{
+    "info": {
+        "_postman_id": "edfd8b82-0d6d-403f-afb8-06af4844a7af",
+        "name": "HTTP Status Mirror",
+        "description": "Aplicação simples em PHP que simula respostas HTTP personalizáveis.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "29122256"
+    },
+    "item": [
+        {
+            "name": "GET",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{URL}}/:statusCode",
+                    "host": [
+                        "{{URL}}"
+                    ],
+                    "path": [
+                        ":statusCode"
+                    ],
+                    "query": [
+                        {
+                            "key": "timeDelay",
+                            "value": "0.5",
+                            "description": "Tempo de atraso em segundos.",
+                            "disabled": true
+                        }
+                    ],
+                    "variable": [
+                        {
+                            "key": "statusCode",
+                            "value": "200",
+                            "description": "Código de status HTTP."
+                        }
+                    ]
+                },
+                "description": "Requisição HTTP GET."
+            },
+            "response": []
+        },
+        {
+            "name": "POST",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"street\": \"7597 Domenic Key\",\r\n    \"city\": \"Medford\",\r\n    \"state\": \"Washington\",\r\n    \"country\": \"Jersey\",\r\n    \"zip\": \"60021\",\r\n    \"coordinates\": {\r\n        \"latitude\": \"1.0626\",\r\n        \"longitude\": \"-39.5198\"\r\n    }\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{URL}}/:statusCode",
+                    "host": [
+                        "{{URL}}"
+                    ],
+                    "path": [
+                        ":statusCode"
+                    ],
+                    "query": [
+                        {
+                            "key": "timeDelay",
+                            "value": "1",
+                            "description": "Tempo de atraso em segundos.",
+                            "disabled": true
+                        }
+                    ],
+                    "variable": [
+                        {
+                            "key": "statusCode",
+                            "value": "201",
+                            "description": "Código de status HTTP."
+                        }
+                    ]
+                },
+                "description": "Requisição HTTP POST."
+            },
+            "response": []
+        },
+        {
+            "name": "PUT",
+            "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"title\": \"Dynamic Creative Specialist\",\r\n    \"descriptor\": \"Lead\",\r\n    \"area\": \"Creative\",\r\n    \"type\": \"Manager\",\r\n    \"company\": \"Purdy and Sons\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{URL}}/:statusCode",
+                    "host": [
+                        "{{URL}}"
+                    ],
+                    "path": [
+                        ":statusCode"
+                    ],
+                    "query": [
+                        {
+                            "key": "timeDelay",
+                            "value": "1.5",
+                            "description": "Tempo de atraso em segundos.",
+                            "disabled": true
+                        }
+                    ],
+                    "variable": [
+                        {
+                            "key": "statusCode",
+                            "value": "200",
+                            "description": "Código de status HTTP."
+                        }
+                    ]
+                },
+                "description": "Requisição HTTP PUT."
+            },
+            "response": []
+        },
+        {
+            "name": "PATCH",
+            "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Elisabeth Stein\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{URL}}/:statusCode",
+                    "host": [
+                        "{{URL}}"
+                    ],
+                    "path": [
+                        ":statusCode"
+                    ],
+                    "query": [
+                        {
+                            "key": "timeDelay",
+                            "value": "2",
+                            "description": "Tempo de atraso em segundos.",
+                            "disabled": true
+                        }
+                    ],
+                    "variable": [
+                        {
+                            "key": "statusCode",
+                            "value": "401",
+                            "description": "Código de status HTTP."
+                        }
+                    ]
+                },
+                "description": "Requisição HTTP PUT."
+            },
+            "response": []
+        },
+        {
+            "name": "DELETE",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "{{URL}}/:statusCode",
+                    "host": [
+                        "{{URL}}"
+                    ],
+                    "path": [
+                        ":statusCode"
+                    ],
+                    "query": [
+                        {
+                            "key": "timeDelay",
+                            "value": "2.5",
+                            "description": "Tempo de atraso em segundos.",
+                            "disabled": true
+                        }
+                    ],
+                    "variable": [
+                        {
+                            "key": "statusCode",
+                            "value": "204",
+                            "description": "Código de status HTTP."
+                        }
+                    ]
+                },
+                "description": "Requisição HTTP DELETE."
+            },
+            "response": []
+        },
+        {
+            "name": "HEAD",
+            "request": {
+                "method": "HEAD",
+                "header": [],
+                "url": {
+                    "raw": "{{URL}}/:statusCode",
+                    "host": [
+                        "{{URL}}"
+                    ],
+                    "path": [
+                        ":statusCode"
+                    ],
+                    "query": [
+                        {
+                            "key": "timeDelay",
+                            "value": "3",
+                            "description": "Tempo de atraso em segundos.",
+                            "disabled": true
+                        }
+                    ],
+                    "variable": [
+                        {
+                            "key": "statusCode",
+                            "value": "405",
+                            "description": "Código de status HTTP."
+                        }
+                    ]
+                },
+                "description": "Requisição HTTP PUT."
+            },
+            "response": []
+        },
+        {
+            "name": "OPTIONS",
+            "request": {
+                "method": "OPTIONS",
+                "header": [],
+                "url": {
+                    "raw": "{{URL}}/:statusCode",
+                    "host": [
+                        "{{URL}}"
+                    ],
+                    "path": [
+                        ":statusCode"
+                    ],
+                    "query": [
+                        {
+                            "key": "timeDelay",
+                            "value": "3.5",
+                            "description": "Tempo de atraso em segundos.",
+                            "disabled": true
+                        }
+                    ],
+                    "variable": [
+                        {
+                            "key": "statusCode",
+                            "value": "200",
+                            "description": "Código de status HTTP."
+                        }
+                    ]
+                },
+                "description": "Requisição HTTP PUT."
+            },
+            "response": []
+        }
+    ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "packages": {},
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "packages": {},
+                "exec": [
+                    "// REQUEST\r",
+                    "pm.collectionVariables.set(\"BODY\", pm.request.body.raw);\r",
+                    "pm.collectionVariables.set(\"METHOD\", pm.request.method);\r",
+                    "pm.collectionVariables.set(\"URI\", pm.request.url.toString());\r",
+                    "\r",
+                    "// RESPONSE\r",
+                    "pm.collectionVariables.set(\"RESPONSE\", pm.response.text());\r",
+                    "pm.collectionVariables.set(\"SIZE\", pm.response.responseSize);\r",
+                    "pm.collectionVariables.set(\"STATUS_CODE\", pm.response.code);\r",
+                    "pm.collectionVariables.set(\"STATUS_PHRASE\", pm.response.status);\r",
+                    "pm.collectionVariables.set(\"TIME\", pm.response.responseTime / 1000);"
+                ]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "-- REQUEST",
+            "value": "",
+            "type": "string",
+            "disabled": true
+        },
+        {
+            "key": "BODY",
+            "value": "BODY",
+            "type": "string"
+        },
+        {
+            "key": "METHOD",
+            "value": "METHOD",
+            "type": "string"
+        },
+        {
+            "key": "URI",
+            "value": "URI",
+            "type": "string"
+        },
+        {
+            "key": "URL",
+            "value": "URL",
+            "type": "string"
+        },
+        {
+            "key": "-- RESPONSE",
+            "value": "",
+            "type": "string",
+            "disabled": true
+        },
+        {
+            "key": "RESPONSE",
+            "value": "RESPONSE",
+            "type": "string"
+        },
+        {
+            "key": "SIZE",
+            "value": "SIZE",
+            "type": "string"
+        },
+        {
+            "key": "STATUS_CODE",
+            "value": "STATUS_CODE",
+            "type": "string"
+        },
+        {
+            "key": "STATUS_PHRASE",
+            "value": "STATUS_PHRASE",
+            "type": "string"
+        },
+        {
+            "key": "TIME",
+            "value": "TIME",
+            "type": "string"
+        }
+    ]
+}
