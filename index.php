@@ -7,7 +7,7 @@ $logFile = __DIR__ . '/requests.log';
 
 // Habilita as requisições para qualquer origem e método.
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: *');
+header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
 
 // Obtém a carimbo de data/hora da requisição.
 $requestTime = isset($_SERVER['REQUEST_TIME']) && is_int($_SERVER['REQUEST_TIME']) ? $_SERVER['REQUEST_TIME'] : time();
@@ -37,16 +37,16 @@ if (!isValidStatusCode($statusCode)) {
 $requestBody = (string) file_get_contents('php://input');
 
 // Obtém o tipo do body enviado.
-$contentType = $_SERVER['CONTENT_TYPE'] ?? $_SERVER['HTTP_CONTENT_TYPE'] ?? 'null';
+$contentType = $_SERVER['CONTENT_TYPE'] ?? $_SERVER['HTTP_CONTENT_TYPE'] ?? null;
+$contentType = is_string($contentType) ? $contentType : 'null';
 $contentType = explode(';', $contentType)[0];
 $contentType = trim($contentType);
 
-// Registra a requisição no arquivo de log.
-logRequest($logFile, $statusCode, $timeDelay, $remoteHost, $requestMethod, $contentType, $requestBody);
-
 // Calcula o tempo gasto de processamento para descontar no atraso.
-$currentTime = new DateTimeImmutable();
-$timeDiff = $currentTime->getTimestamp() - $requestTime->getTimestamp();
+$timeDiff = time() - $requestTime->getTimestamp();
+
+// Registra a requisição no arquivo de log.
+logRequest($logFile, $statusCode, $timeDelay, $timeDiff, $remoteHost, $requestMethod, $contentType, $requestBody);
 
 // Adiciona o tempo de atraso, se fornecido.
 applyDelay($timeDelay, $timeDiff);

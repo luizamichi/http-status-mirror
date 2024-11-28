@@ -47,13 +47,13 @@ function isValidJson(?string $data): bool
  * @param ?string $body Conteúdo do body enviado na requisição.
  * @return string Conteúdo do body minificado.
  */
-function prettyBody(?string $body): string
+function formatRequestBody(?string $body): string
 {
     $formattedBody = 'null';
 
     if (isValidJson($body)) {
         $decodedBody = json_decode((string) $body, true);
-        $formattedBody = json_encode($decodedBody, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        $formattedBody = (string) json_encode($decodedBody, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
     return $formattedBody;
@@ -65,23 +65,25 @@ function prettyBody(?string $body): string
  * @param string $logFile Caminho do arquivo de log.
  * @param int $statusCode Código de status HTTP retornado.
  * @param float $timeDelay Tempo de atraso configurado.
+ * @param float $uptime Tempo gasto para processamento da requisição.
  * @param string $remoteHost Host remoto que fez a requisição.
  * @param string $requestMethod Método HTTP utilizado na requisição.
  * @param string $contentType Tipo do conteúdo enviado na requisição.
  * @param ?string $body Conteúdo do body enviado na requisição.
  * @return void
  */
-function logRequest(string $logFile, int $statusCode, float $timeDelay, string $remoteHost, string $requestMethod, string $contentType, ?string $body = null): void
+function logRequest(string $logFile, int $statusCode, float $timeDelay, float $uptime, string $remoteHost, string $requestMethod, string $contentType, ?string $body = null): void
 {
     $logEntry = sprintf(
-        '[%s] Host: %s | Method: %s | Status: %d | Delay: %.2fs | Type: %s | Body: %s' . PHP_EOL,
+        '[%s] Host: %s | Method: %s | Status: %d | Delay: %.2fs | Uptime: %.2fs | Type: %s | Body: %s' . PHP_EOL,
         date('Y-m-d H:i:s'),
         $remoteHost,
         $requestMethod,
         $statusCode,
         $timeDelay,
+        $uptime,
         $contentType,
-        prettyBody($body)
+        formatRequestBody($body)
     );
 
     file_put_contents($logFile, $logEntry, FILE_APPEND);

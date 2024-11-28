@@ -10,7 +10,7 @@ Ideal para testes de APIs ou validação de clientes HTTP.
 
 - **Status Code Dinâmico**: Retorna um código HTTP baseado na URI (`/200`, `/400`, etc.).
 - **Delay Configurável**: Adicione um atraso na resposta usando o parâmetro `timeDelay`.
-- **Body Reflexivo**: Caso um body seja enviado na requisição, ele será devolvido como resposta.
+- **Body Reflexivo**: Caso seja enviado um JSON no body da requisição, ele será devolvido como resposta.
 - **Log Detalhado**: Todas as requisições são registradas, incluindo o host, código de status, delay e body.
 
 
@@ -68,8 +68,8 @@ curl -i -X POST -H "Content-Type: application/json" -d "{\"key\": \"value\"}" ht
 As requisições são registradas no arquivo `requests.log`. Exemplo:
 
 ``` yaml
-[2024-11-21 11:05:30] Host: 192.168.1.100 | Method: GET | Status: 200 | Delay: 0.00s | Type: null | Body: null
-[2024-11-21 11:05:35] Host: 192.168.1.101 | Method: GET | Status: 400 | Delay: 0.00s | Type: null | Body: null
-[2024-11-21 11:05:40] Host: 192.168.1.102 | Method: GET | Status: 200 | Delay: 2.00s | Type: null | Body: null
-[2024-11-21 11:05:45] Host: 192.168.1.103 | Method: POST | Status: 200 | Delay: 0.00s | Type: application/json | Body: {"key":"value"}
+[2024-11-21 11:05:30] Host: 192.168.1.100 | Method: GET | Status: 200 | Delay: 0.00s | Uptime: 0.00s | Type: null | Body: null
+[2024-11-21 11:05:35] Host: 192.168.1.101 | Method: GET | Status: 400 | Delay: 0.00s | Uptime: 0.00s | Type: null | Body: null
+[2024-11-21 11:05:40] Host: 192.168.1.102 | Method: GET | Status: 200 | Delay: 2.00s | Uptime: 0.00s | Type: null | Body: null
+[2024-11-21 11:05:45] Host: 192.168.1.103 | Method: POST | Status: 200 | Delay: 0.00s | Uptime: 0.00s | Type: application/json | Body: {"key":"value"}
 ```
