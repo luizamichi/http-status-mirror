@@ -5,7 +5,7 @@ require_once 'functions.php';
 // Configura o endereço do arquivo de log.
 $logFile = __DIR__ . '/requests.log';
 
-// Habilita as requisições para qualquer origem e método
+// Habilita as requisições para qualquer origem e método.
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: *');
 
@@ -17,7 +17,7 @@ $requestTime = new DateTimeImmutable('@' . (string) $requestTime);
 $requestUri = is_string($_SERVER['REQUEST_URI']) ? (string) $_SERVER['REQUEST_URI'] : '/';
 $remoteHost = is_string($_SERVER['REMOTE_ADDR']) ? (string) $_SERVER['REMOTE_ADDR'] : '';
 
-// Obtém o método HTTP da requisição
+// Obtém o método HTTP da requisição.
 $requestMethod = is_string($_SERVER['REQUEST_METHOD']) ? (string) $_SERVER['REQUEST_METHOD'] : '';
 
 // Extrai o status code da URI, se fornecido.
@@ -26,6 +26,7 @@ $statusCode = isset($matches[1]) ? (int) $matches[1] : 200;
 
 // Checa se o parâmetro 'timeDelay' foi fornecido na query string.
 $timeDelay = isset($_GET['timeDelay']) && is_numeric($_GET['timeDelay']) ? (float) $_GET['timeDelay'] : 0;
+ini_set('max_execution_time', $timeDelay + 10);
 
 // Valida se o código de status está no intervalo válido 100-599.
 if (!isValidStatusCode($statusCode)) {
@@ -35,8 +36,13 @@ if (!isValidStatusCode($statusCode)) {
 // Obtém o body enviado na requisição, se fornecido.
 $requestBody = (string) file_get_contents('php://input');
 
+// Obtém o tipo do body enviado.
+$contentType = $_SERVER['CONTENT_TYPE'] ?? $_SERVER['HTTP_CONTENT_TYPE'] ?? 'null';
+$contentType = explode(';', $contentType)[0];
+$contentType = trim($contentType);
+
 // Registra a requisição no arquivo de log.
-logRequest($logFile, $statusCode, $timeDelay, $remoteHost, $requestMethod, $requestBody);
+logRequest($logFile, $statusCode, $timeDelay, $remoteHost, $requestMethod, $contentType, $requestBody);
 
 // Calcula o tempo gasto de processamento para descontar no atraso.
 $currentTime = new DateTimeImmutable();

@@ -49,14 +49,14 @@ function isValidJson(?string $data): bool
  */
 function prettyBody(?string $body): string
 {
-    $formattedBody = $body;
+    $formattedBody = 'null';
 
-    if (isValidJson($formattedBody)) {
-        $decodedBody = json_decode((string) $formattedBody, true);
+    if (isValidJson($body)) {
+        $decodedBody = json_decode((string) $body, true);
         $formattedBody = json_encode($decodedBody, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
-    return $formattedBody ?: 'null';
+    return $formattedBody;
 }
 
 /**
@@ -67,18 +67,20 @@ function prettyBody(?string $body): string
  * @param float $timeDelay Tempo de atraso configurado.
  * @param string $remoteHost Host remoto que fez a requisição.
  * @param string $requestMethod Método HTTP utilizado na requisição.
+ * @param string $contentType Tipo do conteúdo enviado na requisição.
  * @param ?string $body Conteúdo do body enviado na requisição.
  * @return void
  */
-function logRequest(string $logFile, int $statusCode, float $timeDelay, string $remoteHost, string $requestMethod, ?string $body = null): void
+function logRequest(string $logFile, int $statusCode, float $timeDelay, string $remoteHost, string $requestMethod, string $contentType, ?string $body = null): void
 {
     $logEntry = sprintf(
-        '[%s] Host: %s | Method: %s | Status: %d | Delay: %.2fs | Body: %s' . PHP_EOL,
+        '[%s] Host: %s | Method: %s | Status: %d | Delay: %.2fs | Type: %s | Body: %s' . PHP_EOL,
         date('Y-m-d H:i:s'),
         $remoteHost,
         $requestMethod,
         $statusCode,
         $timeDelay,
+        $contentType,
         prettyBody($body)
     );
 
