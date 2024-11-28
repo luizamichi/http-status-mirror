@@ -5,6 +5,10 @@ require_once 'functions.php';
 // Configura o endereço do arquivo de log.
 $logFile = __DIR__ . '/requests.log';
 
+// Habilita as requisições para qualquer origem e método
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: *');
+
 // Obtém a carimbo de data/hora da requisição.
 $requestTime = isset($_SERVER['REQUEST_TIME']) && is_int($_SERVER['REQUEST_TIME']) ? $_SERVER['REQUEST_TIME'] : time();
 $requestTime = new DateTimeImmutable('@' . (string) $requestTime);
